@@ -11,5 +11,10 @@ dist
 /docs
 .husky
 .local
+.eslintrc.js
+.eslintignore
+.prettierrc
+.prettierignore
+commitlint.config.js
 /bin
 Dockerfile
