@@ -2,6 +2,16 @@
   "name": "vue3-slide-verify",
   "version": "1.0.0",
   "license": "ISC",
+  "description": "vue3 slide verify",
+  "author": "yuqian <monoplasty@aliyun.com>",
+  "main": "./dist/vue3-slide-verify.js",
+  "module": "./dist/vue3-slide-verify.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-slide-verify.es.js",
+      "require": "./dist/vue3-slide-verify.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -9,12 +19,18 @@
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
+  "keywords": [
+    "vue3",
+    "typescript",
+    "slider",
+    "verify"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
- "lint-staged": {
+  "lint-staged": {
     "src/**/*.{jsx,tsx,ts,js}": [
       "prettier --config .prettierrc --write",
       "eslint --fix"
@@ -26,6 +42,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@types/node": "^16.11.12",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "@vitejs/plugin-vue": "^2.0.0",
@@ -39,6 +56,8 @@
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-vue": "^8.2.0",
     "husky": "^7.0.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",
     "typescript": "^4.4.4",

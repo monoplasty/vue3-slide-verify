@@ -10,5 +10,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["vue", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "vue/no-setup-props-destructure" : "off"
+  },
 };
