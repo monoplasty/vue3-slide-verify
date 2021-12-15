@@ -10,8 +10,13 @@
     ".": {
       "import": "./dist/vue3-slide-verify.es.js",
       "require": "./dist/vue3-slide-verify.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
+  "types": "./index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

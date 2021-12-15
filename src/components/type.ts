@@ -1,6 +1,6 @@
 import type slideVerify from "./slide-verify.vue";
 
-export type SlideVerifyProps = {
+declare type SlideVerifyProps = {
   l: number;
   r: number;
   w: number;
@@ -11,9 +11,7 @@ export type SlideVerifyProps = {
   imgs: any[];
 };
 
-export type SlideVerifyReturn = {};
-
-export type SlideVerifyEmits = {
+declare type SlideVerifyEmits = {
   success: (timestamp: number) => void;
   again: () => void;
   fail: () => void;
@@ -21,4 +19,6 @@ export type SlideVerifyEmits = {
   fulfilled: () => void;
 };
 
-export type SlideVerifyInstance = InstanceType<typeof slideVerify>;
+declare type SlideVerifyInstance = InstanceType<typeof slideVerify>;
+
+export { SlideVerifyProps, SlideVerifyEmits, SlideVerifyInstance };
