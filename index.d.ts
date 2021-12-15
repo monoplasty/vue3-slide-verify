@@ -1,8 +1,28 @@
-import { DefineComponent } from "vue";
-import { SlideVerifyProps } from "./src/components";
+import { DefineComponent, ComponentPublicInstance } from "vue";
 
-export * from "./src/components";
+export declare type SlideVerifyProps = {
+  l: number;
+  r: number;
+  w: number;
+  h: number;
+  sliderText: string;
+  accuracy: number;
+  show: boolean;
+  imgs: any[];
+};
 
-declare const SlideVerify: DefineComponent<SlideVerifyProps>;
+export declare type SlideVerifyEmits = {
+  success: (timestamp: number) => void;
+  again: () => void;
+  fail: () => void;
+  refresh: () => void;
+  fulfilled: () => void;
+};
 
-export default SlideVerify;
+export declare type RawBindings = {
+  refresh: () => void;
+};
+
+export declare type SlideVerify = DefineComponent<SlideVerifyProps, RawBindings>;
+
+export declare type SlideVerifyInstance = InstanceType<SlideVerify>;

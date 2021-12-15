@@ -105,7 +105,9 @@ setup() {
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { SlideVerify, SlideVerifyInstance } from "vue3-slide-verify";
+// 局部注册组件，需要单独引用组件样式
+import SlideVerify, { SlideVerifyInstance } from "vue3-slide-verify";
+import "vue3-slide-verify/dist/style.css";
 
 export default defineComponent({
   components: { SlideVerify },

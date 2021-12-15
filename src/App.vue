@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Vue3 + Typescript Slide Verify</h1>
     <slide-verify
       ref="block"
       :slider-text="text"
@@ -16,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { SlideVerify, SlideVerifyInstance } from "./components";
+import SlideVerify, { SlideVerifyInstance } from "./components";
 
 export default defineComponent({
   components: { SlideVerify },
@@ -40,13 +41,13 @@ export default defineComponent({
     };
 
     const onRefresh = () => {
-      msg.value = "点击了刷新小图标";
+      msg.value = "滑块重置了";
     };
 
     const handleClick = () => {
-      msg.value = "";
       // 刷新
       block.value?.refresh();
+      msg.value = "";
     };
 
     return {

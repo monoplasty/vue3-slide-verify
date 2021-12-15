@@ -38,7 +38,6 @@
 import { defineComponent, reactive, ref, onMounted, PropType } from "vue";
 import { useSlideAction } from "./hooks";
 import { createImg, draw, getRandomImg, getRandomNumberByRange } from "./util";
-import { SlideVerifyProps } from "./type";
 
 export default defineComponent({
   name: "SlideVerify",
@@ -81,7 +80,7 @@ export default defineComponent({
     },
   },
   emits: ["success", "again", "fail", "refresh"],
-  setup(props: SlideVerifyProps, { emit }) {
+  setup(props, { emit }) {
     const { imgs, l, r, w, h, accuracy } = props;
     // 图片加载完关闭遮蔽罩
     const loadBlock = ref(true);

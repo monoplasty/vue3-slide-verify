@@ -273,7 +273,7 @@ const _sfc_main = defineComponent({
     };
   }
 });
-const _withScopeId = (n) => (pushScopeId("data-v-2dc70b4c"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-74359359"), n = n(), popScopeId(), n);
 const _hoisted_1 = ["width", "height"];
 const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createElementVNode("i", { class: "iconfont icon-refresh" }, null, -1));
 const _hoisted_3 = [
@@ -335,8 +335,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 4);
 }
-var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-2dc70b4c"]]);
-const install = function(App) {
-  App.component(SlideVerify.name, SlideVerify);
-};
-export { SlideVerify, install };
+var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-74359359"]]);
+export { SlideVerify as default };
