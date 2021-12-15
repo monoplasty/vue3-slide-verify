@@ -105,7 +105,7 @@ export default defineComponent({
     const canvas = ref<HTMLCanvasElement>();
     const canvasCtx = ref<CanvasRenderingContext2D | null>();
     let img: HTMLImageElement;
-    const { origin, success, isMouseDown, timestamp, trail, start, move, end, verify } = useSlideAction();
+    const { success, start, move, end, verify } = useSlideAction();
 
     // event
     const reset = () => {

@@ -1,10 +1,10 @@
 {
   "name": "vue3-slide-verify",
   "version": "1.0.0",
-  "license": "ISC",
+  "license": "MIT",
   "description": "vue3 slide verify",
   "author": "yuqian <monoplasty@aliyun.com>",
-  "main": "./dist/vue3-slide-verify.js",
+  "main": "./dist/vue3-slide-verify.umd.js",
   "module": "./dist/vue3-slide-verify.es.js",
   "exports": {
     ".": {
