@@ -24,6 +24,8 @@ Using build tools:
 npm install --save vue3-slide-verify
 ```
 
+### 国内镜像地址 [gitee镜像地址](https://gitee.com/monoplasty/vue3-slide-verify)
+
 ### argument
 
 | Param | Type | Describe | Version |
