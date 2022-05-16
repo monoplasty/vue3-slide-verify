@@ -231,7 +231,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-@import "@/assets/iconfont.css";
+@import url("../assets/iconfont.css");
 
 .position() {
   position: absolute;
