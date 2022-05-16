@@ -10,7 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "/src"),
     },
   },
-  /* build: {
+  build: {
     lib: {
       entry: path.resolve(__dirname, "src/components/index.ts"),
       name: "vue3SlideVerify",
@@ -26,5 +26,5 @@ export default defineConfig({
         },
       },
     },
-  }, */
+  },
 });

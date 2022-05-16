@@ -53,6 +53,6 @@ export function getRandomNumberByRange(start: number, end: number) {
 export function getRandomImg(imgs: string[]) {
   const len = imgs.length;
   return len > 0
-    ? imgs[getRandomNumberByRange(0, len)]
+    ? imgs[getRandomNumberByRange(0, len - 1)]
     : "https://picsum.photos/300/150/?image=" + getRandomNumberByRange(0, 1084);
 }

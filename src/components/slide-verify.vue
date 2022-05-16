@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted, PropType } from "vue";
+import { defineComponent, reactive, ref, onMounted, PropType, onBeforeUnmount } from "vue";
 import { useSlideAction } from "./hooks";
 import { createImg, draw, getRandomImg, getRandomNumberByRange } from "./util";
 
@@ -169,11 +169,11 @@ export default defineComponent({
       }
     }
 
-    const touchMoveEvent = (e: TouchEvent) => {
+    const touchMoveEvent = (e: TouchEvent | MouseEvent) => {
       move(w, e, moveCb);
     };
 
-    const touchEndEvent = (e: TouchEvent) => {
+    const touchEndEvent = (e: TouchEvent | MouseEvent) => {
       end(e, endCb);
     };
 
@@ -204,12 +204,14 @@ export default defineComponent({
       });
 
       // bindEvent
-      document.addEventListener("mousemove", (e) => {
-        move(w, e, moveCb);
-      });
-      document.addEventListener("mouseup", (e) => {
-        end(e, endCb);
-      });
+      document.addEventListener("mousemove", touchMoveEvent);
+      document.addEventListener("mouseup", touchEndEvent);
+    });
+
+    // 移除全局事件
+    onBeforeUnmount(() => {
+      document.removeEventListener("mousemove", touchMoveEvent);
+      document.removeEventListener("mouseup", touchEndEvent);
     });
 
     return {
