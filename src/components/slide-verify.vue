@@ -37,7 +37,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, onMounted, PropType, onBeforeUnmount } from "vue";
 import { useSlideAction } from "./hooks";
-import { createImg, draw, getRandomImg, getRandomNumberByRange } from "./util";
+import { createImg, draw, getRandomImg, getRandomNumberByRange, throttle } from "./util";
 
 export default defineComponent({
   name: "SlideVerify",
@@ -233,56 +233,6 @@ export default defineComponent({
     };
   },
 });
-
-type optType = {
-  leading?: boolean;
-  trailing?: boolean;
-  resultCallback?: (res: any) => void;
-};
-function throttle(fn: (args: any) => any, interval: number, options: optType = { leading: true, trailing: true }) {
-  const { leading, trailing, resultCallback } = options;
-  let lastTime = 0;
-  let timer: NodeJS.Timeout | null = null;
-
-  const _throttle = function (this: any, ...args: any) {
-    return new Promise((resolve, reject) => {
-      const nowTime = new Date().getTime();
-      if (!lastTime && !leading) lastTime = nowTime;
-
-      const remainTime = interval - (nowTime - lastTime);
-      if (remainTime <= 0) {
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-
-        const result = fn.apply(this, args);
-        if (resultCallback) resultCallback(result);
-        resolve(result);
-        lastTime = nowTime;
-        return;
-      }
-
-      if (trailing && !timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          lastTime = !leading ? 0 : new Date().getTime();
-          const result = fn.apply(this, args);
-          if (resultCallback) resultCallback(result);
-          resolve(result);
-        }, remainTime);
-      }
-    });
-  };
-
-  _throttle.cancel = function () {
-    if (timer) clearTimeout(timer);
-    timer = null;
-    lastTime = 0;
-  };
-
-  return _throttle;
-}
 </script>
 
 <style scoped lang="less">

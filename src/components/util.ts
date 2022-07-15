@@ -56,3 +56,65 @@ export function getRandomImg(imgs: string[]) {
     ? imgs[getRandomNumberByRange(0, len - 1)]
     : "https://picsum.photos/300/150/?image=" + getRandomNumberByRange(0, 1084);
 }
+
+type optType = {
+  leading?: boolean;
+  trailing?: boolean;
+  resultCallback?: (res: any) => void;
+};
+
+/**
+ * 节流函数
+ * @param fn 回调
+ * @param interval 时间间隔
+ * @param options 头节流，尾节流
+ * @returns function
+ */
+export function throttle(
+  fn: (args: any) => any,
+  interval: number,
+  options: optType = { leading: true, trailing: true },
+) {
+  const { leading, trailing, resultCallback } = options;
+  let lastTime = 0;
+  let timer: NodeJS.Timeout | null = null;
+
+  const _throttle = function (this: any, ...args: any) {
+    return new Promise((resolve, reject) => {
+      const nowTime = new Date().getTime();
+      if (!lastTime && !leading) lastTime = nowTime;
+
+      const remainTime = interval - (nowTime - lastTime);
+      if (remainTime <= 0) {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+
+        const result = fn.apply(this, args);
+        if (resultCallback) resultCallback(result);
+        resolve(result);
+        lastTime = nowTime;
+        return;
+      }
+
+      if (trailing && !timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          lastTime = !leading ? 0 : new Date().getTime();
+          const result = fn.apply(this, args);
+          if (resultCallback) resultCallback(result);
+          resolve(result);
+        }, remainTime);
+      }
+    });
+  };
+
+  _throttle.cancel = function () {
+    if (timer) clearTimeout(timer);
+    timer = null;
+    lastTime = 0;
+  };
+
+  return _throttle;
+}
