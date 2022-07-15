@@ -48,6 +48,11 @@ npm install --save vue3-slide-verify
 | refresh | Function | 点击刷新按钮后的回调函数 | |
 | again | Function | 检测到非人为操作滑动时触发的回调函数 |  |
 
+### 更新记录
+### V1.1.2
+- 针对滑动事件增加节流操作。
+- 提高性能。
+
 ### 实例API
 - 在父组件里如果需要重置，可以在父组件中调用子组件refresh() 方法
 ```html
