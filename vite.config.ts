@@ -10,6 +10,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "/src"),
     },
   },
+  // 发布GitHub pages 是打开
+  build: {
+    outDir: "docs",
+  },
+  // 发布npm包时
   /* build: {
     lib: {
       entry: path.resolve(__dirname, "src/components/index.ts"),
