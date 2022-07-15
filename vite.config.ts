@@ -11,6 +11,7 @@ export default defineConfig({
     },
   },
   // 发布GitHub pages 是打开
+  base: "./",
   build: {
     outDir: "docs",
   },
