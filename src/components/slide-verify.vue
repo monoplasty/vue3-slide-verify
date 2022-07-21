@@ -81,7 +81,7 @@ export default defineComponent({
     interval: {
       // 节流时长间隔
       type: Number,
-      default: 200,
+      default: 50,
     },
   },
   emits: ["success", "again", "fail", "refresh"],

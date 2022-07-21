@@ -38,6 +38,7 @@ npm install --save vue3-slide-verify
 | imgs | Array | picture array 背景图数组，默认值 [] |  |
 | accuracy | Number | 滑动验证的误差范围，默认值 5 |  |
 | show | Boolean | 是否显示刷新按钮，默认值 true |  |
+| interval | Number | 节流函数的时间间隔，默认值 50 | 1.1.2 |
 
 ### callBack
 

@@ -40,6 +40,48 @@ function getRandomImg(imgs) {
   const len = imgs.length;
   return len > 0 ? imgs[getRandomNumberByRange(0, len - 1)] : "https://picsum.photos/300/150/?image=" + getRandomNumberByRange(0, 1084);
 }
+function throttle(fn, interval, options = { leading: true, trailing: true }) {
+  const { leading, trailing, resultCallback } = options;
+  let lastTime = 0;
+  let timer = null;
+  const _throttle = function(...args) {
+    return new Promise((resolve, reject) => {
+      const nowTime = new Date().getTime();
+      if (!lastTime && !leading)
+        lastTime = nowTime;
+      const remainTime = interval - (nowTime - lastTime);
+      if (remainTime <= 0) {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        const result = fn.apply(this, args);
+        if (resultCallback)
+          resultCallback(result);
+        resolve(result);
+        lastTime = nowTime;
+        return;
+      }
+      if (trailing && !timer) {
+        timer = setTimeout(() => {
+          timer = null;
+          lastTime = !leading ? 0 : new Date().getTime();
+          const result = fn.apply(this, args);
+          if (resultCallback)
+            resultCallback(result);
+          resolve(result);
+        }, remainTime);
+      }
+    });
+  };
+  _throttle.cancel = function() {
+    if (timer)
+      clearTimeout(timer);
+    timer = null;
+    lastTime = 0;
+  };
+  return _throttle;
+}
 function useSlideAction() {
   const origin = reactive({
     x: 0,
@@ -148,7 +190,7 @@ const _sfc_main = defineComponent({
     },
     interval: {
       type: Number,
-      default: 200
+      default: 50
     }
   },
   emits: ["success", "again", "fail", "refresh"],
@@ -277,49 +319,7 @@ const _sfc_main = defineComponent({
     };
   }
 });
-function throttle(fn, interval, options = { leading: true, trailing: true }) {
-  const { leading, trailing, resultCallback } = options;
-  let lastTime = 0;
-  let timer = null;
-  const _throttle = function(...args) {
-    return new Promise((resolve, reject) => {
-      const nowTime = new Date().getTime();
-      if (!lastTime && !leading)
-        lastTime = nowTime;
-      const remainTime = interval - (nowTime - lastTime);
-      if (remainTime <= 0) {
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-        const result = fn.apply(this, args);
-        if (resultCallback)
-          resultCallback(result);
-        resolve(result);
-        lastTime = nowTime;
-        return;
-      }
-      if (trailing && !timer) {
-        timer = setTimeout(() => {
-          timer = null;
-          lastTime = !leading ? 0 : new Date().getTime();
-          const result = fn.apply(this, args);
-          if (resultCallback)
-            resultCallback(result);
-          resolve(result);
-        }, remainTime);
-      }
-    });
-  };
-  _throttle.cancel = function() {
-    if (timer)
-      clearTimeout(timer);
-    timer = null;
-    lastTime = 0;
-  };
-  return _throttle;
-}
-const _withScopeId = (n) => (pushScopeId("data-v-02c89212"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-f61c42f2"), n = n(), popScopeId(), n);
 const _hoisted_1 = ["width", "height"];
 const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createElementVNode("i", { class: "iconfont icon-refresh" }, null, -1));
 const _hoisted_3 = [
@@ -381,5 +381,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 4);
 }
-var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-02c89212"]]);
+var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-f61c42f2"]]);
 export { SlideVerify as default };
