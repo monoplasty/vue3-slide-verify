@@ -38,7 +38,7 @@ function getRandomNumberByRange(start, end) {
 }
 function getRandomImg(imgs) {
   const len = imgs.length;
-  return len > 0 ? imgs[getRandomNumberByRange(0, len - 1)] : "https://picsum.photos/300/150/?image=" + getRandomNumberByRange(0, 1084);
+  return len > 0 ? imgs[getRandomNumberByRange(0, len - 1)] : "https://source.unsplash.com/300x150/?book,library";
 }
 function throttle(fn, interval, options = { leading: true, trailing: true }) {
   const { leading, trailing, resultCallback } = options;

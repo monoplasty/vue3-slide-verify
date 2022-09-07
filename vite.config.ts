@@ -11,12 +11,12 @@ export default defineConfig({
     },
   },
   // 发布GitHub pages 是打开
-  base: "./",
-  build: {
-    outDir: "docs",
-  },
+  // base: "./",
+  // build: {
+  //   outDir: "docs",
+  // },
   // 发布npm包时
-  /* build: {
+  build: {
     lib: {
       entry: path.resolve(__dirname, "src/components/index.ts"),
       name: "vue3SlideVerify",
@@ -32,5 +32,5 @@ export default defineConfig({
         },
       },
     },
-  }, */
+  },
 });
