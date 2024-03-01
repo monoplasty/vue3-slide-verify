@@ -50,6 +50,9 @@ npm install --save vue3-slide-verify
 | again | Function | 检测到非人为操作滑动时触发的回调函数 |  |
 
 ### 更新记录
+### V1.1.5
+- 修复在新版vue项目中，ts类型文件找不到的问题。
+
 ### V1.1.2
 - 针对滑动事件增加节流操作。
 - 提高性能。
@@ -108,7 +111,7 @@ setup() {
 import { defineComponent, ref } from "vue";
 // 局部注册组件，需要单独引用组件样式
 // 只提供局部引用的方式，不再采用插件形式，方便按需加载，减少主包大小
-import SlideVerify, { SlideVerifyInstance } from "vue3-slide-verify";
+import SlideVerify, { type SlideVerifyInstance } from 'vue3-slide-verify';
 import "vue3-slide-verify/dist/style.css";
 
 export default defineComponent({
