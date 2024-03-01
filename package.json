@@ -9,7 +9,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue3-slide-verify.es.js",
-      "require": "./dist/vue3-slide-verify.umd.js"
+      "require": "./dist/vue3-slide-verify.umd.js",
+      "types": "./index.d.ts"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
