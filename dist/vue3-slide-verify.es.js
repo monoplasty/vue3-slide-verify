@@ -1,4 +1,4 @@
-import { reactive, ref, defineComponent, onMounted, onBeforeUnmount, openBlock, createElementBlock, normalizeStyle, createElementVNode, normalizeClass, createCommentVNode, toDisplayString, pushScopeId, popScopeId } from "vue";
+import { reactive, ref, defineComponent, onMounted, onBeforeUnmount, openBlock, createElementBlock, normalizeStyle, createElementVNode, normalizeClass, createCommentVNode, toDisplayString } from "vue";
 const PI = Math.PI;
 function sum(x, y) {
   return x + y;
@@ -38,7 +38,7 @@ function getRandomNumberByRange(start, end) {
 }
 function getRandomImg(imgs) {
   const len = imgs.length;
-  return len > 0 ? imgs[getRandomNumberByRange(0, len - 1)] : "https://source.unsplash.com/300x150/?book,library";
+  return len > 0 ? imgs[getRandomNumberByRange(0, len - 1)] : "https://picsum.photos/300/150?image=" + getRandomNumberByRange(0, 1084);
 }
 function throttle(fn, interval, options = { leading: true, trailing: true }) {
   const { leading, trailing, resultCallback } = options;
@@ -319,14 +319,9 @@ const _sfc_main = defineComponent({
     };
   }
 });
-const _withScopeId = (n) => (pushScopeId("data-v-f61c42f2"), n = n(), popScopeId(), n);
 const _hoisted_1 = ["width", "height"];
-const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createElementVNode("i", { class: "iconfont icon-refresh" }, null, -1));
-const _hoisted_3 = [
-  _hoisted_2
-];
-const _hoisted_4 = ["width", "height"];
-const _hoisted_5 = { class: "slide-verify-slider-text" };
+const _hoisted_2 = ["width", "height"];
+const _hoisted_3 = { class: "slide-verify-slider-text" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     id: "slideVerify",
@@ -346,13 +341,15 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       key: 0,
       class: "slide-verify-refresh-icon",
       onClick: _cache[0] || (_cache[0] = (...args) => _ctx.refresh && _ctx.refresh(...args))
-    }, _hoisted_3)) : createCommentVNode("", true),
+    }, _cache[5] || (_cache[5] = [
+      createElementVNode("i", { class: "iconfont icon-refresh" }, null, -1)
+    ]))) : createCommentVNode("", true),
     createElementVNode("canvas", {
       ref: "block",
       width: _ctx.w,
       height: _ctx.h,
       class: "slide-verify-block"
-    }, null, 8, _hoisted_4),
+    }, null, 8, _hoisted_2),
     createElementVNode("div", {
       class: normalizeClass(["slide-verify-slider", {
         "container-active": _ctx.containerCls.containerActive,
@@ -377,7 +374,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 2)
         ], 36)
       ], 4),
-      createElementVNode("span", _hoisted_5, toDisplayString(_ctx.sliderText), 1)
+      createElementVNode("span", _hoisted_3, toDisplayString(_ctx.sliderText), 1)
     ], 2)
   ], 4);
 }

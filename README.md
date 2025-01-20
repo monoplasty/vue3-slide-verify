@@ -26,6 +26,12 @@ npm install --save vue3-slide-verify
 
 ### 国内镜像地址 [gitee镜像地址](https://gitee.com/monoplasty/vue3-slide-verify)
 
+### 学习交流
+
+最近发现有的朋友给我发私信，但我没来的及回复，有兴趣的朋友可以加入社群交流学习：[669653069](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=GiifeVV_d3tA9sENmnilLUIIpr9JjQZ2&authKey=aQltsCgUSq0%2F5Yw8NpF%2B2Iz52DPpYFH2hJmH4I%2Fle1S%2FgnGl68QMiV6NGpxkXrcY&noverify=0&group_code=669653069) 
+
+<img src="./src/assets/669653069.jpg" alt="官方社区" width="160" />
+
 ### argument
 
 | Param | Type | Describe | Version |
@@ -50,6 +56,9 @@ npm install --save vue3-slide-verify
 | again | Function | 检测到非人为操作滑动时触发的回调函数 |  |
 
 ### 更新记录
+### V1.1.6
+- 修复图片链接失效问题，增加文档联系方式。
+
 ### V1.1.5
 - 修复在新版vue项目中，ts类型文件找不到的问题。
 

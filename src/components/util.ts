@@ -54,8 +54,8 @@ export function getRandomImg(imgs: string[]) {
   const len = imgs.length;
   return len > 0
     ? imgs[getRandomNumberByRange(0, len - 1)]
-    : // : "https://picsum.photos/300/150/?image=" + getRandomNumberByRange(0, 1084);
-      "https://source.unsplash.com/300x150/?book,library";
+    : "https://picsum.photos/300/150?image=" + getRandomNumberByRange(0, 1084);
+  // "https://source.unsplash.com/300x150/?book,library";
 }
 
 type optType = {
