@@ -184,7 +184,7 @@ export default defineComponent({
 
     onMounted(() => {
       const _canvasCtx = canvas.value?.getContext("2d");
-      const _blockCtx = block.value?.getContext("2d");
+      const _blockCtx = block.value?.getContext("2d", { willReadFrequently: true });
       canvasCtx.value = _canvasCtx;
       blockCtx.value = _blockCtx;
 

@@ -279,7 +279,7 @@ const _sfc_main = defineComponent({
     onMounted(() => {
       var _a, _b;
       const _canvasCtx = (_a = canvas.value) == null ? void 0 : _a.getContext("2d");
-      const _blockCtx = (_b = block.value) == null ? void 0 : _b.getContext("2d");
+      const _blockCtx = (_b = block.value) == null ? void 0 : _b.getContext("2d", { willReadFrequently: true });
       canvasCtx.value = _canvasCtx;
       blockCtx.value = _blockCtx;
       img = createImg(imgs, () => {
@@ -378,5 +378,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 4);
 }
-var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-f61c42f2"]]);
+var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-3f647794"]]);
 export { SlideVerify as default };
