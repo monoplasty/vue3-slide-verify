@@ -6,6 +6,7 @@
       :imgs="imgs"
       :slider-text="text"
       :accuracy="accuracy"
+      :offset="100"
       @again="onAgain"
       @success="onSuccess"
       @fail="onFail"

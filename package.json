@@ -6,6 +6,14 @@
   "author": "yuqian <monoplasty@aliyun.com>",
   "main": "./dist/vue3-slide-verify.umd.js",
   "module": "./dist/vue3-slide-verify.es.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoplasty/vue3-slide-verify.git"
+  },
+  "homepage": "https://github.com/monoplasty/vue3-slide-verify",
+  "bugs": {
+    "url": "https://github.com/monoplasty/vue3-slide-verify/issues"
+  },
   "exports": {
     ".": {
       "import": "./dist/vue3-slide-verify.es.js",
