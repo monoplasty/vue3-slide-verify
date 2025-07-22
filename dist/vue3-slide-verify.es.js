@@ -191,11 +191,15 @@ const _sfc_main = defineComponent({
     interval: {
       type: Number,
       default: 50
+    },
+    offset: {
+      type: Number,
+      default: 0
     }
   },
   emits: ["success", "again", "fail", "refresh"],
   setup(props, { emit }) {
-    const { imgs, l, r, w, h, accuracy, interval } = props;
+    const { imgs, l, r, w, h, accuracy, interval, offset } = props;
     const loadBlock = ref(true);
     const blockX = ref(0);
     const blockY = ref(0);
@@ -242,20 +246,21 @@ const _sfc_main = defineComponent({
       sliderBox.width = moveX + "px";
     }
     function endCb(timestamp) {
-      const { spliced, TuringTest } = verify(block.value.style.left, blockX.value, accuracy);
+      const left = block.value.style.left;
+      const { spliced, TuringTest } = verify(left, blockX.value, accuracy);
       if (spliced) {
         if (accuracy === -1) {
           containerCls.containerSuccess = true;
           sliderBox.iconCls = "success";
           success.value = true;
-          emit("success", timestamp);
+          emit("success", { timestamp, left: parseFloat(left) });
           return;
         }
         if (TuringTest) {
           containerCls.containerSuccess = true;
           sliderBox.iconCls = "success";
           success.value = true;
-          emit("success", timestamp);
+          emit("success", { timestamp, left: parseFloat(left) });
         } else {
           containerCls.containerFail = true;
           sliderBox.iconCls = "fail";
@@ -285,7 +290,15 @@ const _sfc_main = defineComponent({
       img = createImg(imgs, () => {
         loadBlock.value = false;
         const L = l + r * 2 + 3;
-        blockX.value = getRandomNumberByRange(L + 10, w - (L + 10));
+        if (offset > 0) {
+          if (offset >= L + 10 && offset <= w - (L + 10)) {
+            blockX.value = offset;
+          } else {
+            throw new Error(`offset must be greater than ${L + 10} and less than ${w - (L + 10)}`);
+          }
+        } else {
+          blockX.value = getRandomNumberByRange(L + 10, w - (L + 10));
+        }
         blockY.value = getRandomNumberByRange(10 + r * 2, h - (L + 10));
         if (_canvasCtx && _blockCtx) {
           draw(_canvasCtx, blockX.value, blockY.value, l, r, "fill");
@@ -378,5 +391,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ], 2)
   ], 4);
 }
-var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-3f647794"]]);
+var SlideVerify = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-617ae856"]]);
 export { SlideVerify as default };

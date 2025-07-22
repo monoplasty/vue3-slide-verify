@@ -83,10 +83,17 @@ export default defineComponent({
       type: Number,
       default: 50,
     },
+    /**
+     * 初始卡片绘制的x坐标位置。每次重置时，需要重新传值。
+     */
+    offset: {
+      type: Number,
+      default: 0,
+    },
   },
   emits: ["success", "again", "fail", "refresh"],
   setup(props, { emit }) {
-    const { imgs, l, r, w, h, accuracy, interval } = props;
+    const { imgs, l, r, w, h, accuracy, interval, offset } = props;
     // 图片加载完关闭遮蔽罩
     const loadBlock = ref(true);
     const blockX = ref(0);
@@ -144,13 +151,14 @@ export default defineComponent({
     }
 
     function endCb(timestamp: number) {
-      const { spliced, TuringTest } = verify(block.value!.style.left, blockX.value, accuracy);
+      const left = block.value!.style.left;
+      const { spliced, TuringTest } = verify(left, blockX.value, accuracy);
       if (spliced) {
         if (accuracy === -1) {
           containerCls.containerSuccess = true;
           sliderBox.iconCls = "success";
           success.value = true;
-          emit("success", timestamp);
+          emit("success", { timestamp, left: parseFloat(left) });
           return;
         }
         if (TuringTest) {
@@ -158,7 +166,7 @@ export default defineComponent({
           containerCls.containerSuccess = true;
           sliderBox.iconCls = "success";
           success.value = true;
-          emit("success", timestamp);
+          emit("success", { timestamp, left: parseFloat(left) });
         } else {
           containerCls.containerFail = true;
           sliderBox.iconCls = "fail";
@@ -192,7 +200,16 @@ export default defineComponent({
         loadBlock.value = false;
         const L = l + r * 2 + 3;
         // draw block
-        blockX.value = getRandomNumberByRange(L + 10, w - (L + 10));
+        if (offset > 0) {
+          // 使用传入的值，并对传入值判断
+          if (offset >= L + 10 && offset <= w - (L + 10)) {
+            blockX.value = offset;
+          } else {
+            throw new Error(`offset must be greater than ${L + 10} and less than ${w - (L + 10)}`);
+          }
+        } else {
+          blockX.value = getRandomNumberByRange(L + 10, w - (L + 10));
+        }
         blockY.value = getRandomNumberByRange(10 + r * 2, h - (L + 10));
         if (_canvasCtx && _blockCtx) {
           draw(_canvasCtx, blockX.value, blockY.value, l, r, "fill");

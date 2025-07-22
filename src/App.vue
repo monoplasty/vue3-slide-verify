@@ -39,8 +39,8 @@ export default defineComponent({
       block.value?.refresh();
     };
 
-    const onSuccess = (times: number) => {
-      msg.value = `login success, 耗时${(times / 1000).toFixed(1)}s`;
+    const onSuccess = (detail: { timestamp: number; left: number }) => {
+      msg.value = `login success, 耗时${(detail.timestamp / 1000).toFixed(1)}s, 移动距离${detail.left}px`;
     };
 
     const onFail = () => {
