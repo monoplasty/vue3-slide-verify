@@ -45,17 +45,21 @@ npm install --save vue3-slide-verify
 | accuracy | Number | 滑动验证的误差范围，默认值 5 |  |
 | show | Boolean | 是否显示刷新按钮，默认值 true |  |
 | interval | Number | 节流函数的时间间隔，默认值 50 | 1.1.2 |
+| offset | Number | 初始渲染时，卡片的偏移值。（可用于后端验证；从后端获取，并且成功回调中会返回滑块移动的距离） | 1.1.8 |
 
 ### callBack
 
 | Event | Type | Describe | Version |
 | :------: | :------: | :------: | :-----: |
-| success | Function | success callback | 返回时间参数，单位为毫秒 |
+| success | Function | success callback | 返回耗时和滑块移动距离参数，单位为毫秒和px |
 | fail | Function | fail callback | |
 | refresh | Function | 点击刷新按钮后的回调函数 | |
 | again | Function | 检测到非人为操作滑动时触发的回调函数 |  |
 
 ### 更新记录
+### V1.1.8
+- 新增offset参数，支持后端传入初始渲染滑块水平位置，成功回调可以获取到滑块水平移动距离。
+
 ### V1.1.6
 - 修复图片链接失效问题，增加文档联系方式。
 
@@ -136,8 +140,8 @@ export default defineComponent({
       block.value?.refresh();
     };
 
-    const onSuccess = (times: number) => {
-      msg.value = `login success, 耗时${(times / 1000).toFixed(1)}s`;
+    const onSuccess = (detail: { timestamp: number; left: number }) => {
+      msg.value = `login success, 耗时${(detail.timestamp / 1000).toFixed(1)}s, 移动距离${detail.left}px`;
     };
 
     const onFail = () => {

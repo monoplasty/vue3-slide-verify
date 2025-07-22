@@ -34,7 +34,7 @@ export declare type SlideVerifyProps = {
    */
   imgs?: any[];
   /**
-   * 初始渲染时，卡片的偏移值。（可用于后端验证；从后端获取，并且）
+   * 初始渲染时，卡片的偏移值。（可用于后端验证；从后端获取，并且成功回调中会返回滑块移动的距离）
    */
   offset?: number;
 };
